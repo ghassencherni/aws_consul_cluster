@@ -23,8 +23,6 @@ module "security" {
 # Create the LoadBalancer in front of our consul cluster auto scaling group
 module "load_balancer" {
   source = "./load_balancer"
-
-  #consul_cluster_elb_sg_id          = "${module.security.consul_cluster_elb_sg_id}"
   consul_cluster_elb_sg_ids         = "${module.security.consul_cluster_elb_sg_ids}"
   consul_cluster_public_subnets_ids = "${module.networking.consul_cluster_public_subnets_ids}"
 }
@@ -40,3 +38,11 @@ module "auto_scaling_group" {
   consul_cluster_elb_id = "${module.load_balancer.consul_cluster_elb_id}"
 }
 
+# Create a micorservice in an EC2 to test our consul cluster ( EC2 running a docker image )
+module "test_microsvc" {
+  source = "./test_microsvc"
+  instance_type = "${var.instance_type}"
+  image_id = "${var.image_id}"
+  consul_cluster_public_subnet_id_1 = "${module.networking.consul_cluster_public_subnet_id_1}"
+  key_name = "${var.key_name}"
+}
