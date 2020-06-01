@@ -37,6 +37,9 @@ resource "aws_autoscaling_group" "consul-cluste-auto-scaling-group" {
   
   # spin up instances on the three AZ ( 3 subnets )
   vpc_zone_identifier = ["${var.consul_cluster_public_subnets_ids}"]
+  
+  # By default health check type is based on EC2 ( not suitable with our cluster, need tp recreate cluster when service is down and detected by the ALB)
+  health_check_type         = "ELB"
 
   # Allow to update instance without an outage
   lifecycle {

@@ -12,7 +12,7 @@ resource "aws_elb" "consul_cluster_elb" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    interval            = 30
+    interval            = 10
     target              = "HTTP:8500/ui/"
   }
 

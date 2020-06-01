@@ -1,6 +1,6 @@
 #! /bin/bash
 
-AUTO_SG_NAME=consul-cluster
+ASG_NAME=consul-cluster
 REGION=eu-west-1
 EXPECTED_SIZE=5
 CONSUL_VERSION=1.5.3
@@ -13,6 +13,8 @@ service docker start
 
 # Get my local IP address
 LOCAL_IP=$(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+
+sleep 60
 
 # Get the IP of any node of the cluster ( allows consul agent to join the cluster )
 NODE_ID=$(aws --region=$REGION autoscaling describe-auto-scaling-groups --auto-scaling-group-name $AUTO_SG_NAME | grep InstanceId | cut -d '"' -f4 | head -1)
