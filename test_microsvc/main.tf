@@ -12,6 +12,8 @@ resource "aws_instance" "microsvc_instance" {
 
   key_name  = "${var.key_name}"
 
-  subnet_id = "${var.consul_cluster_public_subnet_id_1}"
+  #subnet_id = "${var.consul_cluster_public_subnet_id_1}"
+
+  availability_zone = "${var.availability_zone}"
 
 }

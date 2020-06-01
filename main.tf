@@ -43,6 +43,7 @@ module "test_microsvc" {
   source = "./test_microsvc"
   instance_type = "${var.instance_type}"
   image_id = "${var.image_id}"
-  consul_cluster_public_subnet_id_1 = "${module.networking.consul_cluster_public_subnet_id_1}"
+  #consul_cluster_public_subnet_id_1 = "${module.networking.consul_cluster_public_subnet_id_1}"
+  availability_zone = "${module.networking.availability_zone_1}"
   key_name = "${var.key_name}"
 }
