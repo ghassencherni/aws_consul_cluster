@@ -12,6 +12,8 @@ variable "public_cidr_subnet" {
   type = "list"
 }
 
+variable "public_client_cidr_subnet" {}
+
 variable "instance_type" {}
 
 variable "image_id" {}

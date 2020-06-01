@@ -10,6 +10,7 @@ module "networking" {
   aws_region         = "${var.aws_region}"
   vpc_cidr           = "${var.vpc_cidr}"
   public_cidr_subnet = "${var.public_cidr_subnet}"
+  public_client_cidr_subnet = "${var.public_client_cidr_subnet}"
 }
 
 # Deploy Security Groups
@@ -44,6 +45,11 @@ module "test_microsvc" {
   instance_type = "${var.instance_type}"
   image_id = "${var.image_id}"
   #consul_cluster_public_subnet_id_1 = "${module.networking.consul_cluster_public_subnet_id_1}"
-  availability_zone = "${module.networking.availability_zone_1}"
+  #availability_zone = "${module.networking.availability_zone_1}"
   key_name = "${var.key_name}"
+  
+  security_groups = "${module.security.auto_scaling_group_sg_id}"
+  #security_groups = ["${module.security.asg_sg_ids}"]
+  subnet_id = "${module.networking.subnet_id_instance}"
+  #vpc_security_group_ids = ["${module.security.asg_sg_ids}"]
 }

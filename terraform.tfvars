@@ -15,14 +15,8 @@ public_cidr_subnet = [
   "10.0.3.0/24"
 ]
 
+public_client_cidr_subnet = "10.0.4.0/24"
+
 image_id = "ami-0ea3405d2d2522162"
 
 instance_type = "t2.micro"
-
-
-## The AWS ACCESS KEY ID
-#aws_access_key_id = ""
-#
-## The AWS SECRET ACCESS KEY
-#aws_secret_access_key = ""
-

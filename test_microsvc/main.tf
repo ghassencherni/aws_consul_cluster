@@ -9,11 +9,11 @@ resource "aws_instance" "microsvc_instance" {
   tags {
     Name = "microsvc_instance"
   }
-
   key_name  = "${var.key_name}"
-
-  #subnet_id = "${var.consul_cluster_public_subnet_id_1}"
-
-  availability_zone = "${var.availability_zone}"
-
+  
+  #availability_zone = "${var.availability_zone}"
+  subnet_id = "${var.subnet_id}"
+  security_groups = ["${var.security_groups}"]
+  #vpc_security_group_ids = "${var.vpc_security_group_ids}"
+  user_data = "${file("userdata-scripts/microsvc.sh")}"
 }
